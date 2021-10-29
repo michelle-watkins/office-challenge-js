@@ -25,4 +25,13 @@ describe('Office: ', () => {
       expect(office.rooms).toEqual({'Room 1' : 'Available'});
     });
   });
+
+  describe('listRooms: ', () => {
+    it('should return the list of rooms', () => {
+      let room2 = new MeetingRoom('Room 2');
+      office.addRoom(room);
+      office.addRoom(room2);
+      expect(office.listRooms()).toEqual({'Room 1' : 'Available', 'Room 2' : 'Available'})
+    });
+  });
 })

@@ -54,3 +54,36 @@ As a staff member
 So that I can avoid interrupting a meeting
 I would like an error if I try to use a room that has already been entered
 ```
+
+## Done
+1. A meeting room should have a name
+2. Add a meeting room to the list of rooms
+3. List the meeting rooms
+4. Rooms should have an available/unavailable attribute
+5. When a room is in use, it should be unavailable
+6. When a room is no longer in use, it should be available
+
+## To-do
+7. List available meeting rooms
+8. Error message if a room is already in use and an attempt is made to use that room
+
+Below are my initial thoughts for 7. List available meeting rooms.
+Code to be used in `office.js`
+```
+  listAvailableRooms() {
+     Object.entries(this.rooms).forEach(([key, value]) => console.log(`${key}: ${value}`));
+  }
+```
+The code above iterates through the hash and displays each room. However, it doesn't explicitly return anything so my test was showing undefined. I tried using the `return` keyword instead of `console.log` but that didn't work. I also tried to use `return` at the beginning of the line (before `Object....`) but this was also undefined for my test.
+
+Code to be used in `office_spec.js`
+```
+  describe('listAvailableRooms', () => {
+    it('should return the list of available rooms', () => {
+      let room2 = new MeetingRoom('Room 2');
+      office.addRoom(room);
+      office.addRoom(room2);
+      expect(office.listAvailableRooms()).toEqual({'Room 1' : 'Available', 'Room 2' : 'Available'})
+    });
+  });
+```
